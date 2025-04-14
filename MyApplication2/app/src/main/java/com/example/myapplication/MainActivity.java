@@ -1,14 +1,22 @@
 package com.example.myapplication;
 
+import static android.app.ProgressDialog.show;
+
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.BuildCompat;
+
+
 import com.example.myapplication.adapters.API.ApiClient;
 import com.example.myapplication.adapters.API.ApiService;
 import com.example.myapplication.adapters.models.ApiResponse;
@@ -30,8 +38,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+//        Version Show
+        TextView versionText = findViewById(R.id.Version);
+        try {
+            PackageManager pm = getPackageManager();
+            PackageInfo pInfo = pm.getPackageInfo(getPackageName(), 0);
+            String versionName = pInfo.versionName;
+            versionText.setText(getString(R.string.version) + versionName+ getString(R.string.nadeem));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            versionText.setText(getString(R.string.vnotf));
+        }
+
+
+
+
         prefsHelper = new SharedPreferencesHelper(this);
         progressBar = findViewById(R.id.progressBar);
+
+
+
 
         checkAuthentication();
         setupUI();
@@ -75,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (userId == -1) {
             handleMissingUserId();
+//            Toast.makeText(this, "ERROR show", Toast.LENGTH_SHORT).show();
             return;
         }
 

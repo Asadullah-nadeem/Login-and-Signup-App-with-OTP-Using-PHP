@@ -6,25 +6,26 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center">
+
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Using: "
+        android:text="@string/using"
         android:textSize="16sp"
         android:layout_marginBottom="16dp"/>
     <EditText
         android:id="@+id/etOtp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter OTP"
+        android:hint="@string/enter_otp"
         android:inputType="number"/>
 
     <Button
         android:id="@+id/btnVerify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verify OTP"
+        android:text="@string/verify_otp"
         android:layout_marginTop="24dp"/>
 
 </LinearLayout>

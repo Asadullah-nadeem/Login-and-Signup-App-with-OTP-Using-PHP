@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +31,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+//        Version Show
+        TextView versionText = findViewById(R.id.Version);
+        try {
+            PackageManager pm = getPackageManager();
+            PackageInfo pInfo = pm.getPackageInfo(getPackageName(), 0);
+            String versionName = pInfo.versionName;
+            versionText.setText(getString(R.string.version) + versionName+ getString(R.string.nadeem));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            versionText.setText(getString(R.string.vnotf));
+        }
 
         prefsHelper = new SharedPreferencesHelper(this);
         initializeViews();

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="about_us">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="delete">Delete You Account</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="using">Using:</string>
+    <string name="version">v</string>
+    <string name="vnotf">Version not found</string>
+    <string name="nadeem"> | Develop By Asadullah Nadeem</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="registered_email">Registered Email</string>
 </resources>

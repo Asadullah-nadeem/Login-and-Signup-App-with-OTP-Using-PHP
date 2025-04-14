@@ -11,6 +11,7 @@ import com.example.myapplication.adapters.models.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.HTTP;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -29,6 +30,10 @@ public interface ApiService {
     @POST("reset-password.php")
     Call<ApiResponse<Void>> resetPassword(@Body ResetPasswordRequest request);
 
+//    @HTTP(method = "DELETE", path = "delete.php", hasBody = true)
+//    Call<ApiResponse<Void>> deleteAccount(@Body DeleteRequest deleteRequest);
     @HTTP(method = "DELETE", path = "delete.php", hasBody = true)
-    Call<ApiResponse<Void>> deleteAccount(@Body DeleteRequest deleteRequest);
+    Call<ApiResponse<Void>> deleteAccount(
+            @Body DeleteRequest deleteRequest
+    );
 }

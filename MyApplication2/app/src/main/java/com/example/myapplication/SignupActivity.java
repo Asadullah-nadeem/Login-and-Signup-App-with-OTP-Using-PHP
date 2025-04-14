@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,20 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         prefsHelper = new SharedPreferencesHelper(this);
+
+
+        //        Version Show
+        TextView versionText = findViewById(R.id.Version);
+        try {
+            PackageManager pm = getPackageManager();
+            PackageInfo pInfo = pm.getPackageInfo(getPackageName(), 0);
+            String versionName = pInfo.versionName;
+            versionText.setText(getString(R.string.version) + versionName+ getString(R.string.nadeem));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            versionText.setText(getString(R.string.vnotf));
+        }
+
         initializeViews();
     }
 

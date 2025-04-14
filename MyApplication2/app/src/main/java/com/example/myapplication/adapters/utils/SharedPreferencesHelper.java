@@ -18,6 +18,19 @@ public class SharedPreferencesHelper {
 
     private final SharedPreferences preferences;
 
+
+    // Add this constant at the top
+    private static final String KEY_AUTH_TOKEN = "auth_token";
+
+    // Add these methods
+    public String getAuthToken() {
+        return preferences.getString(KEY_AUTH_TOKEN, null);
+    }
+
+    public void setAuthToken(String token) {
+        preferences.edit().putString(KEY_AUTH_TOKEN, token).apply();
+    }
+
     public SharedPreferencesHelper(Context context) {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -140,5 +153,9 @@ public class SharedPreferencesHelper {
         preferences.edit()
                 .putBoolean(KEY_IS_LOGGED_IN, isLoggedIn)
                 .apply();
+    }
+    public void incrementLoginAttempts() {
+        int attempts = getLoginAttempts() + 1;
+        preferences.edit().putInt(KEY_LOGIN_ATTEMPTS, attempts).apply();
     }
 }

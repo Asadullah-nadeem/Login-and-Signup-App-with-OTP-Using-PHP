@@ -6,6 +6,21 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center">
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="141dp"
+        android:layout_height="178dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/about_us"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvUserInfo"
@@ -19,13 +34,13 @@
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"/>
+        android:text="@string/logout"/>
 
     <TextView
         android:id="@+id/Daccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete You Account"
+        android:text="@string/delete"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
         android:padding="8dp"
@@ -39,4 +54,15 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginTop="16dp"/>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <TextView
+        android:id="@+id/Version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/version"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"/>
 </LinearLayout>

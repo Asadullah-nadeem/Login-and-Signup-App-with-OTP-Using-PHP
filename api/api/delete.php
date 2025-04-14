@@ -37,8 +37,8 @@ if (!isset($input['id']) || !is_numeric($input['id'])) {
 $userId = (int)$input['id'];
 
 try {
-    // Fetch user email before deleting
-    $stmt = $pdo->prepare("SELECT email FROM users WHERE id = ?");
+    // Fetch user details before soft deleting
+    $stmt = $pdo->prepare("SELECT email, full_name FROM users WHERE id = ?");
     $stmt->execute([$userId]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -48,12 +48,13 @@ try {
         exit;
     }
 
-    // Delete user
-    $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+    // Soft delete user (mark as deleted instead of permanent deletion)
+    $stmt = $pdo->prepare("UPDATE users SET is_deleted = 1, deleted_at = NOW() WHERE id = ?");
     $stmt->execute([$userId]);
 
     // Send email notification
     $email = $user['email'];
+    $name = $user['full_name'] ?? 'User';
     $subject = "Your CodeAxe Account Has Been Deleted";
     
     // Modern UI Email Template
@@ -86,7 +87,12 @@ try {
     http_response_code(200);
     echo json_encode([
         'success' => true,
-        'message' => 'User deleted successfully and email notification sent'
+        'message' => 'User account marked as deleted. Notification email sent.',
+        'data' => [
+            'user_id' => $userId,
+            'deletion_date' => date('Y-m-d H:i:s'),
+            'recovery_available_until' => date('Y-m-d H:i:s', strtotime('+30 days'))
+        ]
     ]);
 
 } catch (PDOException $e) {
